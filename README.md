@@ -1,173 +1,138 @@
-# Data Science Group Project
+# Word Embedding Based Search Engine
 
-A Python-based semantic search application for e-commerce product discovery, built around a Flask web app and vector search pipeline. The project processes a Flipkart product dataset, enriches product descriptions, and enables semantic product search using embeddings and similarity search.
+A Python-based semantic search application for e-commerce product discovery, built using Flask, sentence embeddings, and FAISS. The project uses a Flipkart product dataset to support semantic product search, API access, and evaluation workflows.
 
 ## Overview
 
-This repository contains a full stack for an intelligent product search engine that:
+This project explores intelligent product search by:
 
-- loads and preprocesses product data,
-- generates embeddings for product titles and descriptions,
-- indexes products using FAISS,
-- exposes a REST API and web interface for search,
-- supports evaluation and comparison workflows.
-
-The application is designed for data science and ML experimentation in a product search context, with a focus on semantic matching rather than keyword-only retrieval.
+- Loading and preprocessing product data
+- Generating embeddings for product titles and descriptions
+- Indexing products using FAISS
+- Providing a REST API and web interface
+- Supporting evaluation and comparison of search models
 
 ## Tech Stack
 
 - Python
 - Flask
 - FAISS
-- sentence-transformers
-- scikit-learn
-- pandas / NumPy
+- Sentence Transformers
+- NumPy and pandas
 - PyTorch
 - OpenAI-compatible LLM integration
-- Docker / Docker Compose
+- Docker and Docker Compose
+
+## Features
+
+- Semantic product search using embeddings
+- Saved vector indexes and model artifacts
+- Data preprocessing and enrichment
+- Flask API endpoints for product search
+- Web interface for browsing and comparing products
+- Evaluation scripts and reports
+- Docker support
 
 ## Project Structure
 
 ```text
 .
-├── app.py                     # Application entry point
-├── Dockerfile                 # Container definition
-├── docker-compose.yml         # Local multi-container setup
-├── Makefile                   # Common project commands
-├── requirements.txt           # Python dependencies
-├── .env.example               # Sample environment configuration
+├── app.py
 ├── config/
-│   └── settings.py            # Application configuration
-├── data/
-│   ├── raw/                   # Raw dataset files
-│   ├── processed/             # Cleaned and processed data
-│   └── evaluation/            # Evaluation data
-├── models/                    # Saved model artifacts and indexes
-├── logs/                      # Runtime logs
-├── results/                   # Output artifacts
-├── scripts/                   # Utility scripts
+├── models/
+├── results/
+├── scripts/
 ├── src/
-│   ├── api/                   # Flask app and API routes
-│   ├── core/                  # Logging and shared utilities
-│   ├── data/                  # Dataset loading and preprocessing
-│   ├── models/                # Search orchestration and model logic
-│   └── ...
-├── templates/                 # HTML frontend templates
-├── tests/                     # Test suite
-├── evaluation_output.txt      # Evaluation output sample
-├── spot_check.py              # Spot-check scripts
-├── spot_check_output.txt      # Spot-check results
-└── flipkart_com-ecommerce_sample.csv
+│   ├── api/
+│   ├── core/
+│   ├── data/
+│   ├── evaluation/
+│   ├── models/
+│   └── utils/
+├── templates/
+├── tests/
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+├── Makefile
+└── .env.example
 ```
-
-## Features
-
-- Semantic product search using embeddings
-- Saved FAISS indices and model artifacts
-- Data cleaning and enrichment pipeline
-- Config-driven deployment with environment variables
-- Flask API endpoints for product and search functionality
-- Web UI templates for browsing and comparing products
-- Docker setup for easier local deployment
 
 ## Prerequisites
 
-Before running the project, make sure you have:
-
-- Python 3.10+
+- Python 3.10 or later
 - pip
-- Docker (optional, for containerized setup)
-- A dataset file in `data/raw/` (for example, a Flipkart product CSV)
+- Docker (optional)
 
 ## Setup
 
-1. Clone the repository
+Clone this repository:
 
 ```bash
-git clone https://github.com/niyatiiii28/data-science-group-project.git
-cd data-science-group-project
+git clone https://github.com/Hariraavi-code/word-embedding-search-engine.git
+cd word-embedding-search-engine
 ```
 
-2. Create a virtual environment
+Create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate   # Linux/macOS
-# or .venv\Scripts\activate  # Windows
 ```
 
-3. Install dependencies
+On Windows:
+
+```cmd
+.venv\Scripts\activate
+```
+
+On Linux or macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Configure environment variables
+Create your local environment file:
 
 ```bash
-cp .env.example .env
+copy .env.example .env
 ```
 
-Update `.env` as needed for values such as API keys, model settings, and runtime configuration.
-
-5. Add dataset
-
-Place your product dataset CSV file in the `data/raw/` directory. The app expects a dataset similar to the Flipkart product catalog and will preprocess it automatically on first run.
+On Linux or macOS, use `cp .env.example .env` instead. Configure any required values in `.env`, and never commit real API keys or secrets.
 
 ## Run the Application
-
-### Local Python run
 
 ```bash
 python app.py
 ```
 
-Then open:
+If the application starts successfully, open:
 
-- http://localhost:5000
-- API endpoints under `/api`
+http://localhost:5000
 
-### Docker run
+Alternatively, use Docker:
 
 ```bash
 docker compose up --build
 ```
 
-## API Usage
+## Models and Data
 
-The app exposes search and product-related endpoints via Flask. Typical usage includes:
+The repository includes saved model artifacts and a Flipkart product dataset. Depending on the configuration, some features may require additional model downloads or an API key.
 
-- health checks
-- product listing
-- semantic search queries
-- evaluation and comparison tasks
+## Evaluation
 
-See the `src/api` modules for route definitions and request handling.
+Evaluation scripts and reports are available in the `scripts/` and `results/` directories.
 
-## Model Workflow
+## Acknowledgment
 
-On startup, the app:
-
-1. loads or creates the processed dataset,
-2. enriches product descriptions,
-3. initializes the search orchestrator,
-4. builds model artifacts if they don't already exist,
-5. serves the application and search API.
-
-## Notes
-
-- The project is configured to use a local `.env` file for environment variables.
-- Some features may require external API keys or downloaded models depending on the selected embedding and LLM configuration.
-- Large datasets can take time to preprocess and index on first run.
+This repository is based on a data science group project. Credit the original contributors and obtain their permission before publicly redistributing their work.
 
 ## License
 
-This project does not currently declare a license file. If you plan to share or distribute it publicly, consider adding an appropriate open-source license.
-
-## Contributing
-
-If you are collaborating on this project, follow the repository workflow and keep environment settings and generated artifacts isolated from source control where appropriate.
-
-## Authors
-
-This repository is part of a data science group project focused on semantic search and product discovery.
+No license has been declared. Check with the original contributors before reusing or redistributing the project.

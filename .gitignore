@@ -1,0 +1,69 @@
+# gitignore
+__pycache__/
+*.pyc
+.env
+venv/
+*.egg-info/
+dist/
+build/
+
+# # Model artifacts (large files)
+# models/model1/*.pkl
+# models/model1/*.npy
+# models/model2/*.faiss
+# models/model2/*.npy
+# models/model2/*.pkl
+# models/model3/*.faiss
+# models/model3/*.npy
+# models/model3/*.pkl
+# models/model4/*.json
+# models/_cache/
+
+# # Data (download separately)
+# data/raw/*.csv
+# data/processed/*.csv
+# data/processed/*.json
+
+# # Logs
+# logs/
+
+# # IDE
+# .vscode/
+# .idea/
+
+# # Jupyter
+# .ipynb_checkpoints/
+
+# # OS
+# .DS_Store
+# Thumbs.db
+
+
+# Environment secrets
+.env
+.env.*
+
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Logs and caches
+logs/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Generated data
+data/raw/*.csv
+data/processed/*.csv
+data/processed/*.json
+
+# Generated model artifacts
+models/_cache/build_output.log
+evaluation_output.txt
+spot_check_output.txt
+/build_output.log
